@@ -3,9 +3,9 @@
 /**
  * main - this is the master function
  *
- * puts - enable us to write a standard output
+ * Description: enable us to write a standard output
  *
- * return (0) means that the code is a (success)
+ * Return: Always 0 (success)
 */
 
 int main(void)
