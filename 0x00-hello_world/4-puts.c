@@ -1,9 +1,11 @@
 #include <stdio.h>
 
 /**
- *main - this is the master function
- *puts - enable us to write a standard output
- *return - always return 0 means that the code is a success
+ * main - this is the master function
+ *
+ * puts - enable us to write a standard output
+ *
+ * return (0) means that the code is a (success)
 */
 
 int main(void)
