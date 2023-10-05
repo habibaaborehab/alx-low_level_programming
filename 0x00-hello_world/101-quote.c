@@ -1,8 +1,9 @@
 #include <unistd.h>
 
 /**
- *main
- *return: 1 fail code
+ *main - the master function
+ *Description: using write with parameters
+ *Return: 1 fail code
  */
 
 int main(void)
