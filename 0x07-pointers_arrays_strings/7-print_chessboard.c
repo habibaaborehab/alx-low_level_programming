@@ -1,22 +1,30 @@
+#include <stdio.h>
 #include "main.h"
 
 /**
- * print_chessboard - print the dashboard
- * @a: array of characters
- *
- * Description: a function to display the chessboard
- * Return: No return
+ * print_chessboard - Write a function that prints the chessboard.
+ * --------------------------
+ * Prototype: void print_chessboard(char (*a)[8]);
+ * --------------------------
+ * @a: a pointer to the memory area to be filled
+ * --------------------------
+ * By Youssef Hassane
  */
+
 void print_chessboard(char (*a)[8])
 {
 	int i, j;
 
-	for (i = 0; i < 8; i++)
+	i = j = 0;
+	while (i < 8)
 	{
-		for (j = 0; j < 8; j++)
+		j = 0;
+		while (j < 8)
 		{
-			putchar(a[i][j]);
+			_putchar(a[i][j]);
+			j++;
 		}
-		putchar('\n');
+		_putchar('\n');
+		i++;
 	}
 }
