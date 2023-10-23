@@ -8,7 +8,6 @@
  * --------------------------
  * @a: a pointer to the memory area to be filled
  * --------------------------
- * By Youssef Hassane
  */
 
 void print_chessboard(char (*a)[8])
