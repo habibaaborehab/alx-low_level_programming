@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "main.h"
+#include <stdlib.h>
 
 /**
 * main - Program that takes first two integer arguments and prints the product
@@ -22,7 +23,7 @@ int main(int argc, char *argv[])
 		j = 1;
 
 		for (i = 1; i < 3; i++)
-			j *= _atoi(argv[i]);
+			j *= atoi(argv[i]);
 
 		printf("%d\n", j);
 	}
