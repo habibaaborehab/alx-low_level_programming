@@ -1,100 +1,79 @@
+#include <stdlib.h>
 #include <stdio.h>
-#include "variadic_functions.h"
 #include <stdarg.h>
-
+#include "variadic_functions.h"
 /**
- * op_c - Print character .
- * @form: name va_list
- *
- * Return: Nothing.
+ * print_int - prints an int
+ * @args: the list of args
  */
-
-void op_c(va_list form)
+void print_int(va_list args)
 {
-	printf("%c", va_arg(form, int));
+	printf("%d", va_arg(args, int));
 }
 /**
- * op_i - Print Integer
- * @form: name va_list
- *
- * Return: Nothing.
+ * print_char - prints a char
+ * @args: the list of args
  */
-
-void op_i(va_list form)
+void print_char(va_list args)
 {
-	printf("%i", va_arg(form, int));
+	printf("%c", va_arg(args, int));
 }
 /**
- * op_f - print FLoat numbers
- * @form: name of va_list
- *
- * Return: Nothing.
+ * print_string - prints a string
+ * @args: the list of args
  */
-
-void op_f(va_list form)
+void print_string(va_list args)
 {
-	printf("%f", va_arg(form, double));
-}
-/**
- * op_s -print string
- * @form: name va_list
- *
- * Return: Nothing.
- */
+	char *z = va_arg(args, char *);
 
-void op_s(va_list form)
-{
-	char *str;
-
-	str = va_arg(form, char *);
-	if (str == NULL)
+	if (!z)
 	{
 		printf("(nil)");
 		return;
 	}
-	printf("%s", str);
+	printf("%s", z);
 }
-
 /**
- * print_all - check the code for Holberton School students.
- * @format: number of arguments in character format
- *
- * Return: Nothing.
+ * print_float - prints floats
+ * @args: the list of args
  */
-
+void print_float(va_list args)
+{
+	printf("%f", va_arg(args, double));
+}
+/**
+ * print_all - prints all
+ * @format: formats of arg
+ */
 void print_all(const char * const format, ...)
 {
+	types_t types[] = {
+	{'c', print_char},
+	{'i', print_int},
+	{'f', print_float},
+	{'s', print_string},
+	{'\0', NULL}
+	};
+	va_list args;
+	char *sep1 = "", *sep2 = ", ";
+	int count1 = 0, count2 = 0;
 
-	va_list all;
-	unsigned int i, j;
-	char *separator = "";
-
-	f ops[] = {
-		{"c", op_c},
-		{"i", op_i},
-		{"f", op_f},
-		{"s", op_s},
-		};
-
-	va_start(all, format);
-	i = 0;
-	while (format && format[i])
+	va_start(args, format);
+	while (format !=  NULL && format[count1] != '\0')
 	{
-		j = 0;
-		while (j < 4)
+		count2 = 0;
+		while (types[count2].z != '\0')
 		{
-			if (ops[j].op[0] == format[i])
+			if (format[count1] == types[count2].z)
 			{
-				printf("%s", separator);
-				separator = ", ";
-				ops[j].f(all);
-				break;
+				printf("%s", sep1);
+				types[count2].f(args);
+				sep1 = sep2;
 			}
-			j++;
+			count2++;
 		}
-	i++;
+		count1++;
 	}
-
 	printf("\n");
-	va_end(all);
+	va_end(args);
 }
