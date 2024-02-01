@@ -1,28 +1,30 @@
 #include "hash_tables.h"
+
+/**
+ * hash_table_delete - Delete the hash table.
+ * @ht: Hash table.
+ *
+ * Return: Void.
+ */
 void hash_table_delete(hash_table_t *ht)
 {
-	hash_node_t **array;
-	long unsigned int i = 0;
+	unsigned long int i;
+	hash_node_t *current;
 
-	if (!ht)
-		return;
-
-	array = ht->array;
-	while (i < ht->size)
+	for (i = 0; i < ht->size; i++)
 	{
-		hash_node_t *head = array[i];
-
-		while (head)
+		if (ht->array[i] != NULL)
 		{
-			hash_node_t *curent_node = head;
-
-			head = head->next;
-			free(curent_node->key);
-			free(curent_node->value);
-			free(curent_node);
+			while (ht->array[i] != NULL)
+			{
+				current = ht->array[i]->next;
+				free(ht->array[i]->key);
+				free(ht->array[i]->value);
+				free(ht->array[i]);
+				ht->array[i] = current;
+			}
 		}
-		i++;
 	}
-	free(array);
+	free(ht->array);
 	free(ht);
 }
